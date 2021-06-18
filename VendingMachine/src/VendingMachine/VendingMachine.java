@@ -34,8 +34,8 @@ public class VendingMachine implements Serializable{
     public HashMap<String, ArrayList<ArrayList<Product>>> vendingMachine = new HashMap<>();
 
 
-    public ArrayList<Product> getProducts(Command command){
-        VendingMachine currentVendingMachine = getVendingMachineFromDatabase();
+    public ArrayList<Product> getProducts( Command command){
+         VendingMachine currentVendingMachine = getVendingMachineFromDatabase();
 
         ArrayList<Product> productsToReturn = new ArrayList<Product>();
         ArrayList<ArrayList<Product>> currentProductRow = currentVendingMachine.vendingMachine.get(command.rowNumber);
@@ -76,7 +76,7 @@ public class VendingMachine implements Serializable{
    
     public VendingMachine getVendingMachineFromDatabase(){
         VendingMachine currentVendingMachine = null;
-        try {
+        try{
             InputStream inputStream = new FileInputStream("database.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             currentVendingMachine = (VendingMachine) objectInputStream.readObject();
@@ -90,7 +90,6 @@ public class VendingMachine implements Serializable{
         }
         return currentVendingMachine;
     }
-
 
     private  void fill(){
         ArrayList<ArrayList<Product>> drinksRow = new ArrayList<>();
